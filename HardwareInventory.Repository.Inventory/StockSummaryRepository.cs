@@ -51,6 +51,33 @@ namespace HardwareInventory.Repository.Inventory
             catch (Exception) { throw; }
         }
 
+        public async Task<IEnumerable<StockSummary>> Get(string type, string code)
+        {
+            try
+            {
+                var stockSummaries = StockSummary.Where(
+                    summary => summary.Type == type && summary.Code == code);
+                if (stockSummaries != null)
+                    return await stockSummaries.ToListAsync();
+                return null;
+            }
+            catch (Exception) { throw; }
+        }
+
+        public async Task<StockSummary> Get(string type, string code, string description)
+        {
+            try
+            {
+                var stockSummary = await StockSummary.FirstOrDefaultAsync(
+                    summary => summary.Type == type && summary.Code == code
+                    && summary.Description == description);
+                if (stockSummary != null)
+                    return stockSummary;
+                return null;
+            }
+            catch (Exception) { throw; }
+        }
+
         public async Task<IEnumerable<StockSummary>> GetLikeDescription(string description)
         {
             try

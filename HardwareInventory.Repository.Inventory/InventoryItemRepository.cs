@@ -51,6 +51,33 @@ namespace HardwareInventory.Repository.Inventory
             catch (Exception) { throw; }
         }
 
+        public async Task<IEnumerable<InventoryItem>> Get(string type, string code)
+        {
+            try
+            {
+                var inventoryItems = InventoryItem.Where(
+                    item => item.Type == type && item.Code == code);
+                if (inventoryItems != null)
+                    return await inventoryItems.ToListAsync();
+                return null;
+            }
+            catch (Exception) { throw; }
+        }
+
+        public async Task<IEnumerable<InventoryItem>> Get(string type, string code, string description)
+        {
+            try
+            {
+                var inventoryItems = InventoryItem.Where(
+                    item => item.Type == type && item.Code == code
+                    && item.Description == description);
+                if (inventoryItems != null)
+                    return await inventoryItems.ToListAsync();
+                return null;
+            }
+            catch (Exception) { throw; }
+        }
+
         public async Task<IEnumerable<InventoryItem>> GetLikeDescription(string description)
         {
             try
