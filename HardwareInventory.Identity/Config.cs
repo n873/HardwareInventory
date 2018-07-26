@@ -1,113 +1,87 @@
-﻿using IdentityServer4;
+﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+
+
 using IdentityServer4.Models;
-using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
 namespace HardwareInventory.Identity
 {
     public static class Config
     {
-        public static IEnumerable<ApiResource> GetApiResources()
+        public static IEnumerable<IdentityResource> GetIdentityResources()
         {
-            return new List<ApiResource>
+            return new IdentityResource[]
             {
-                new ApiResource("api1", "My API")
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+            };
+        }
+
+        public static IEnumerable<ApiResource> GetApis()
+        {
+            return new ApiResource[]
+            {
+                new ApiResource("api1", "My API #1")
             };
         }
 
         public static IEnumerable<Client> GetClients()
         {
-            return new List<Client>
+            return new[]
             {
+                // client credentials flow client
                 new Client
                 {
                     ClientId = "client",
+                    ClientName = "Client Credentials Client",
 
-                     // no interactive user, use the clientid/secret for authentication
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
 
-                    // secret for authentication
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-
-                    // scopes that client has access to
                     AllowedScopes = { "api1" }
-                }
-            };
-        }
-
-        public static IEnumerable<Client> GetClients(IConfiguration configuration)
-        {
-            // client credentials client
-            return new List<Client>
-            {
-                new Client
-                {
-                    ClientId = "clientApp",
-
-                    // no interactive user, use the clientid/secret for authentication
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-
-                    // secret for authentication
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-
-                    // scopes that client has access to
-                    AllowedScopes = { "apiApp" }
                 },
 
-                // OpenID Connect implicit flow client (MVC)
+                // MVC client using hybrid flow
                 new Client
                 {
                     ClientId = "mvc",
                     ClientName = "MVC Client",
+
                     AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
+                    ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
 
-                    RequireConsent = true,
+                    RedirectUris = { "http://localhost:5001/signin-oidc" },
+                    FrontChannelLogoutUri = "http://localhost:5001/signout-oidc",
+                    PostLogoutRedirectUris = { "http://localhost:5001/signout-callback-oidc" },
 
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-
-                    RedirectUris = { $"{configuration["ClientAddress"]}/signin-oidc" },
-                    PostLogoutRedirectUris = { $"{configuration["ClientAddress"]}/signout-callback-oidc" },
-
-                    AllowedScopes =
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "apiApp"
-                    },
-                    AllowOfflineAccess = true
+                    AllowOfflineAccess = true,
+                    AllowedScopes = { "openid", "profile", "api1" }
                 },
 
-                // OpenID Connect implicit flow client (Angular)
+                // SPA client using implicit flow
                 new Client
                 {
-                    ClientId = "ng",
-                    ClientName = "Angular Client",
+                    ClientId = "spa",
+                    ClientName = "SPA Client",
+                    ClientUri = "http://identityserver.io",
+
                     AllowedGrantTypes = GrantTypes.Implicit,
                     AllowAccessTokensViaBrowser = true,
-                    RequireConsent = true,
 
-                    RedirectUris = { $"{configuration["ClientAddress"]}/" },
-                    PostLogoutRedirectUris = { $"{configuration["ClientAddress"]}/home" },
-                    AllowedCorsOrigins = { configuration["ClientAddress"] },
-
-                    AllowedScopes =
+                    RedirectUris =
                     {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "apiApp"
+                        "http://localhost:5002/index.html",
+                        "http://localhost:5002/callback.html",
+                        "http://localhost:5002/silent.html",
+                        "http://localhost:5002/popup.html",
                     },
 
-                }
+                    PostLogoutRedirectUris = { "http://localhost:5002/index.html" },
+                    AllowedCorsOrigins = { "http://localhost:5002" },
 
+                    AllowedScopes = { "openid", "profile", "api1" }
+                }
             };
         }
     }

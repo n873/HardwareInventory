@@ -7,15 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardwareInventory.Web", "Ha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardwareInventory.Domain.Model", "HardwareInventory.Domain.Model\HardwareInventory.Domain.Model.csproj", "{58718254-0654-42C2-A1B2-4C3C59567EAC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardwareInventory.Identity", "HardwareInventory.Identity\HardwareInventory.Identity.csproj", "{9FA412CA-305C-4D59-B1FB-1C5DF2553FE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardwareInventory.Domain.Constant", "HardwareInventory.Domain.Constant\HardwareInventory.Domain.Constant.csproj", "{D5220FB1-7940-4567-BFFD-9294BC263475}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareInventory.Domain.Constant", "HardwareInventory.Domain.Constant\HardwareInventory.Domain.Constant.csproj", "{D5220FB1-7940-4567-BFFD-9294BC263475}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardwareInventory.Repository", "HardwareInventory.Repository\HardwareInventory.Repository.csproj", "{15DA26AD-BD7C-4E82-A3C7-4A6228B935BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareInventory.Repository", "HardwareInventory.Repository\HardwareInventory.Repository.csproj", "{15DA26AD-BD7C-4E82-A3C7-4A6228B935BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardwareInventory.Repository.Inventory", "HardwareInventory.Repository.Inventory\HardwareInventory.Repository.Inventory.csproj", "{D3793272-6527-4B38-BF7C-772DCDEF02AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareInventory.Repository.Inventory", "HardwareInventory.Repository.Inventory\HardwareInventory.Repository.Inventory.csproj", "{D3793272-6527-4B38-BF7C-772DCDEF02AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardwareInventory.BusinessLogic.Inventory", "HardwareInventory.BusinessLogic.Inventory\HardwareInventory.BusinessLogic.Inventory.csproj", "{58046D10-66E1-4E3B-A6D6-654E95FEB60C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareInventory.BusinessLogic.Inventory", "HardwareInventory.BusinessLogic.Inventory\HardwareInventory.BusinessLogic.Inventory.csproj", "{58046D10-66E1-4E3B-A6D6-654E95FEB60C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardwareInventory.Identity", "HardwareInventory.Identity\HardwareInventory.Identity.csproj", "{4BA91B36-00F2-444B-BCD2-9AD1D958E9D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +31,6 @@ Global
 		{58718254-0654-42C2-A1B2-4C3C59567EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58718254-0654-42C2-A1B2-4C3C59567EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58718254-0654-42C2-A1B2-4C3C59567EAC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FA412CA-305C-4D59-B1FB-1C5DF2553FE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FA412CA-305C-4D59-B1FB-1C5DF2553FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FA412CA-305C-4D59-B1FB-1C5DF2553FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FA412CA-305C-4D59-B1FB-1C5DF2553FE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D5220FB1-7940-4567-BFFD-9294BC263475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D5220FB1-7940-4567-BFFD-9294BC263475}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5220FB1-7940-4567-BFFD-9294BC263475}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +47,10 @@ Global
 		{58046D10-66E1-4E3B-A6D6-654E95FEB60C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58046D10-66E1-4E3B-A6D6-654E95FEB60C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58046D10-66E1-4E3B-A6D6-654E95FEB60C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BA91B36-00F2-444B-BCD2-9AD1D958E9D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA91B36-00F2-444B-BCD2-9AD1D958E9D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA91B36-00F2-444B-BCD2-9AD1D958E9D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA91B36-00F2-444B-BCD2-9AD1D958E9D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
